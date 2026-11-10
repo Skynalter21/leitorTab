@@ -1,0 +1,2229 @@
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: #0b0f19;
+  color: #f1f5f9;
+  position: relative;
+}
+
+/* Top Header */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 18px;
+  background: #111827;
+  border-bottom: 1px solid #1e293b;
+  flex-shrink: 0;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+}
+
+.brand-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f8fafc;
+  letter-spacing: -0.01em;
+}
+
+.brand-subtitle {
+  display: block;
+  font-size: 0.74rem;
+  color: #94a3b8;
+}
+
+/* Open Tabs Strip */
+.open-tabs-strip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  flex: 1;
+  padding: 2px 6px;
+  scrollbar-width: thin;
+}
+
+.tab-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.tab-pill:hover {
+  background: #273549;
+  color: #fff;
+}
+
+.tab-pill.active {
+  background: rgba(99, 102, 241, 0.18);
+  border-color: #6366f1;
+  color: #fff;
+  font-weight: 600;
+}
+
+.pill-icon.gp {
+  color: #818cf8;
+}
+
+.pill-icon.pdf {
+  color: #f87171;
+}
+
+.pill-name {
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #e2e8f0;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background: #334155;
+  border-color: #475569;
+}
+
+.btn-primary-upload {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.35);
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.btn-primary-upload:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.global-error-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 18px;
+  background: #7f1d1d;
+  color: #fecaca;
+  font-size: 0.85rem;
+}
+
+.global-error-bar button {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid #f87171;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Workspace Layout */
+.gp-workspace,
+.pdf-workspace {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Transport & Practice Toolbar */
+.gp-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 7px 14px;
+  background: #161f30;
+  border-bottom: 1px solid #26334d;
+  flex-shrink: 0;
+}
+
+.toolbar-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.divider-v {
+  width: 1px;
+  height: 22px;
+  background: #2e3d59;
+  margin: 0 2px;
+}
+
+.btn-transport {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #f8fafc;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-transport.play {
+  background: #10b981;
+  border-color: #059669;
+  color: #052e16;
+}
+
+.btn-transport.play:hover:not(:disabled) {
+  background: #34d399;
+}
+
+.btn-transport:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: 7px;
+  border: 1px solid #2e3d59;
+  background: #1e293b;
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-tool:hover {
+  background: #28364f;
+  color: #fff;
+}
+
+.btn-tool.active {
+  background: rgba(99, 102, 241, 0.22);
+  border-color: #6366f1;
+  color: #a5b4fc;
+}
+
+.btn-tool.trainer-running {
+  background: rgba(245, 158, 11, 0.22);
+  border-color: #f59e0b;
+  color: #fde68a;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid #2e3d59;
+  background: #1e293b;
+  color: #cbd5e1;
+  cursor: pointer;
+}
+
+.btn-icon:hover {
+  background: #334155;
+  color: #fff;
+}
+
+.btn-icon.delete:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+/* Time Seek Bar */
+.time-seek-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #0f172a;
+  padding: 4px 9px;
+  border-radius: 8px;
+  border: 1px solid #1e293b;
+}
+
+.time-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  color: #94a3b8;
+  min-width: 36px;
+  text-align: center;
+}
+
+.seek-slider {
+  width: 120px;
+  accent-color: #6366f1;
+  cursor: pointer;
+}
+
+/* Speed & Loop Controls */
+.speed-control {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #0f172a;
+  padding: 4px 8px;
+  border-radius: 7px;
+  border: 1px solid #26334d;
+}
+
+.speed-select {
+  background: transparent;
+  color: #f8fafc;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+}
+
+.speed-select option {
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+.bpm-badge {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.loop-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bar-range-picker {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #0f172a;
+  padding: 3px 7px;
+  border-radius: 7px;
+  border: 1px solid #26334d;
+}
+
+.range-label {
+  font-size: 0.73rem;
+  color: #94a3b8;
+}
+
+.bar-input {
+  width: 44px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #f8fafc;
+  border-radius: 5px;
+  padding: 2px 4px;
+  font-size: 0.76rem;
+  text-align: center;
+}
+
+.btn-mini {
+  padding: 3px 7px;
+  border-radius: 5px;
+  border: 1px solid #4f46e5;
+  background: #4338ca;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-mini.clear {
+  background: #334155;
+  border-color: #475569;
+}
+
+.master-volume {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #0f172a;
+  padding: 4px 8px;
+  border-radius: 7px;
+  border: 1px solid #26334d;
+}
+
+.vol-slider {
+  width: 68px;
+  accent-color: #6366f1;
+  cursor: pointer;
+}
+
+.zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.zoom-text {
+  font-size: 0.75rem;
+  min-width: 38px;
+  text-align: center;
+  color: #cbd5e1;
+}
+
+/* Speed Trainer Sub-Bar */
+.speed-trainer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 8px 16px;
+  background: #1c1917;
+  border-bottom: 1px solid #78350f;
+  font-size: 0.8rem;
+}
+
+.trainer-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fde68a;
+}
+
+.trainer-info span {
+  color: #d6d3d1;
+  font-size: 0.76rem;
+}
+
+.trainer-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.trainer-controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #e7e5e4;
+  font-size: 0.76rem;
+}
+
+.trainer-controls select {
+  background: #292524;
+  color: #fef3c7;
+  border: 1px solid #78350f;
+  border-radius: 5px;
+  padding: 3px 6px;
+  font-size: 0.76rem;
+}
+
+.trainer-status-pill {
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid #f59e0b;
+  color: #fef08a;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.btn-trainer-toggle {
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid #d97706;
+  background: #f59e0b;
+  color: #0b0f19;
+  font-weight: 700;
+  font-size: 0.76rem;
+  cursor: pointer;
+}
+
+.btn-trainer-toggle.active {
+  background: #ef4444;
+  border-color: #dc2626;
+  color: #fff;
+}
+
+/* Main Split Body */
+.gp-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Left Instrument Mixer Sidebar */
+.track-mixer {
+  width: 300px;
+  background: #111827;
+  border-right: 1px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.mixer-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.mixer-header h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.mixer-subtitle {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.mixer-header-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.btn-xs {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 7px;
+  font-size: 0.72rem;
+  border-radius: 5px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #cbd5e1;
+  cursor: pointer;
+}
+
+.btn-xs:hover:not(:disabled) {
+  background: #334155;
+  color: #fff;
+}
+
+.btn-xs:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-xs.reset {
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+.track-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.track-card {
+  background: #192234;
+  border: 1px solid #26334d;
+  border-radius: 10px;
+  padding: 10px;
+  transition: all 0.15s ease;
+}
+
+.track-card.visible-track {
+  border-color: #6366f1;
+  background: linear-gradient(180deg, rgba(99, 102, 241, 0.12), rgba(25, 34, 52, 0.95));
+}
+
+.track-card.focused-track {
+  box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.5);
+}
+
+.track-card.silenced-track {
+  opacity: 0.62;
+}
+
+.track-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-visibility {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.icon-checked {
+  color: #818cf8;
+}
+
+.track-select-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.track-icon {
+  color: #818cf8;
+  flex-shrink: 0;
+}
+
+.track-names {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.track-name {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-meta {
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+/* Mute / Solo Buttons */
+.mute-solo-group {
+  display: flex;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.btn-ms {
+  width: 28px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.btn-ms.mute:hover {
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+.btn-ms.mute.active {
+  background: #ef4444;
+  border-color: #dc2626;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.45);
+}
+
+.btn-ms.solo:hover {
+  border-color: #f59e0b;
+  color: #fde68a;
+}
+
+.btn-ms.solo.active {
+  background: #f59e0b;
+  border-color: #d97706;
+  color: #0b0f19;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.45);
+}
+
+.track-card-bottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 9px;
+  padding-top: 7px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.btn-vol-icon {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.text-danger {
+  color: #ef4444;
+}
+
+.text-warning {
+  color: #f59e0b;
+}
+
+.text-indigo {
+  color: #818cf8;
+}
+
+.track-vol-slider {
+  flex: 1;
+  accent-color: #818cf8;
+  cursor: pointer;
+  height: 4px;
+}
+
+.track-vol-pct {
+  font-size: 0.72rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: #94a3b8;
+  min-width: 36px;
+  text-align: right;
+}
+
+.mixer-footer-tip {
+  padding: 10px 14px;
+  background: #0f172a;
+  border-top: 1px solid #1e293b;
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.mixer-footer-tip code {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* Score Viewport */
+.score-viewport {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: auto;
+  background: #1e2433;
+  padding: 16px 22px;
+  position: relative;
+}
+
+.score-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #111827;
+  border: 1px solid #26334d;
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin-bottom: 14px;
+}
+
+.score-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.score-artist {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.synth-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.76rem;
+  color: #cbd5e1;
+  background: #1e293b;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #64748b;
+}
+
+.status-dot.ready {
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.status-dot.loading {
+  background: #f59e0b;
+}
+
+/* Paper Surface for AlphaTab */
+.alphatab-paper-wrapper {
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  min-height: 520px;
+  padding: 12px;
+  overflow-x: auto;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.alphatab-paper-wrapper.dark-sheet {
+  background: #0f172a;
+  color: #f1f5f9;
+  border: 1px solid #26334d;
+}
+
+/* AlphaTab Playback Cursors & Range Highlighting */
+.at-cursor-bar {
+  background: rgba(99, 102, 241, 0.16);
+}
+
+.at-selection div {
+  background: rgba(16, 185, 129, 0.22);
+  border-top: 2px solid #10b981;
+  border-bottom: 2px solid #10b981;
+}
+
+.at-cursor-beat {
+  background: #ef4444;
+  width: 3px;
+}
+
+.at-highlight * {
+  fill: #6366f1;
+  stroke: #6366f1;
+}
+
+/* Interactive 24-Fret Guitar/Bass Fretboard */
+.fretboard-panel {
+  background: #0f172a;
+  border-top: 1px solid #26334d;
+  padding: 8px 16px 10px;
+  flex-shrink: 0;
+}
+
+.fretboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.76rem;
+  margin-bottom: 6px;
+  color: #cbd5e1;
+}
+
+.fretboard-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fretboard-title span {
+  color: #818cf8;
+  font-weight: 600;
+}
+
+.transpose-pill {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+}
+
+.fretboard-legend {
+  color: #94a3b8;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.73rem;
+}
+
+.fretboard-scroll {
+  overflow-x: auto;
+}
+
+.fretboard-neck {
+  min-width: 980px;
+  background: linear-gradient(180deg, #271c15, #1e1510);
+  border: 1px solid #443022;
+  border-radius: 8px;
+  padding: 4px 8px 6px;
+}
+
+.fretboard-numbers-row,
+.fret-string-row,
+.fretboard-inlays-row {
+  display: grid;
+  grid-template-columns: 46px repeat(24, minmax(34px, 1fr));
+}
+
+.fret-number-cell {
+  text-align: center;
+  font-size: 0.66rem;
+  color: #a8a29e;
+  padding-bottom: 3px;
+}
+
+.fret-number-cell.marked-fret {
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.fret-string-row {
+  height: 22px;
+}
+
+.fret-cell {
+  position: relative;
+  border-right: 2px solid #78716c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fret-cell.nut-cell {
+  border-right: 5px solid #e7e5e4;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.string-wire {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, #d6d3d1, #a8a29e);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.string-wire.vibrating {
+  background: #34d399;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.open-string-label {
+  position: relative;
+  z-index: 2;
+  background: #1c1917;
+  color: #e7e5e4;
+  font-size: 0.66rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  border: 1px solid #44403c;
+}
+
+.fret-active-dot {
+  position: relative;
+  z-index: 3;
+  width: 22px;
+  height: 20px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: 1.5px solid #ecfdf5;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: #052e16;
+  font-weight: 800;
+}
+
+.dot-note {
+  font-size: 0.66rem;
+}
+
+.dot-fret {
+  font-size: 0.56rem;
+  opacity: 0.85;
+}
+
+.fretboard-inlays-row {
+  padding-top: 4px;
+}
+
+.fret-inlay-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10px;
+}
+
+.inlay-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(251, 191, 36, 0.55);
+}
+
+.inlay-double {
+  display: flex;
+  gap: 6px;
+}
+
+/* Modal & Library Drawer */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: rgba(11, 15, 25, 0.75);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.library-drawer {
+  width: 500px;
+  max-width: 95vw;
+  height: 100vh;
+  background: #111827;
+  border-left: 1px solid #26334d;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.55);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.drawer-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.drawer-header h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.drawer-header p {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.drawer-toolbar {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.search-input-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #0f172a;
+  border: 1px solid #26334d;
+  border-radius: 8px;
+  padding: 0 12px;
+}
+
+.search-input-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #f8fafc;
+  font-size: 0.84rem;
+  outline: none;
+  padding: 8px 0;
+}
+
+.drawer-filter-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #1e293b;
+  overflow-x: auto;
+}
+
+.filter-chip {
+  padding: 5px 11px;
+  border-radius: 16px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #cbd5e1;
+  font-size: 0.76rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filter-chip.active {
+  background: #6366f1;
+  border-color: #6366f1;
+  color: #fff;
+  font-weight: 600;
+}
+
+.drawer-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty-library {
+  text-align: center;
+  padding: 48px 20px;
+  color: #94a3b8;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+
+.library-item-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #192234;
+  border: 1px solid #26334d;
+  border-radius: 10px;
+  padding: 10px 12px;
+  transition: all 0.15s ease;
+}
+
+.library-item-card.active {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.14);
+}
+
+.btn-fav {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.library-item-main {
+  flex: 1;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.library-item-title-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.library-item-title {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #f8fafc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.library-item-sub {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+  font-size: 0.73rem;
+  color: #94a3b8;
+}
+
+.saved-pref-tag {
+  background: #0f172a;
+  color: #a5b4fc;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.68rem;
+}
+
+.library-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-select {
+  background: #0f172a;
+  color: #e2e8f0;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 4px 7px;
+  font-size: 0.73rem;
+  cursor: pointer;
+}
+
+.status-select.studying {
+  border-color: #f59e0b;
+  color: #fde68a;
+}
+
+.status-select.mastered {
+  border-color: #10b981;
+  color: #6ee7b7;
+}
+
+/* Chromatic Tuner Modal */
+.tuner-modal {
+  margin: auto;
+  width: 440px;
+  max-width: 92vw;
+  background: #111827;
+  border: 1px solid #2e3d59;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+.tuner-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tuner-display {
+  background: #0b0f19;
+  border: 1px solid #26334d;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+
+.tuner-display.in-tune {
+  border-color: #10b981;
+  box-shadow: inset 0 0 24px rgba(16, 185, 129, 0.15);
+}
+
+.tuner-note-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+}
+
+.tuner-note {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.tuner-octave {
+  font-size: 1.4rem;
+  color: #818cf8;
+  font-weight: 700;
+}
+
+.tuner-freq {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 14px;
+}
+
+.tuner-meter-track {
+  position: relative;
+  height: 12px;
+  background: #1e293b;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.tuner-center-mark {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #10b981;
+  transform: translateX(-50%);
+}
+
+.tuner-needle {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  width: 10px;
+  border-radius: 5px;
+  background: #f59e0b;
+  transform: translateX(-50%);
+  transition: left 0.08s linear;
+}
+
+.tuner-needle.in-tune {
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.tuner-cents-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  color: #64748b;
+}
+
+.text-tune-ok {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.btn-tuner-mic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px;
+  border-radius: 10px;
+  border: none;
+  background: #6366f1;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-tuner-mic.active {
+  background: #ef4444;
+}
+
+.tuner-ref-section {
+  border-top: 1px solid #1e293b;
+  padding-top: 14px;
+}
+
+.ref-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
+
+.ref-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.btn-ref-tone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #f8fafc;
+  cursor: pointer;
+}
+
+.btn-ref-tone:hover {
+  border-color: #6366f1;
+  background: #273549;
+}
+
+.btn-ref-tone span {
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+/* PDF Viewer Styles */
+.pdf-file-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #f8fafc;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.pdf-page-count {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.pdf-scroll-viewport {
+  flex: 1;
+  overflow-y: auto;
+  background: #1e2433;
+  padding: 24px;
+  position: relative;
+}
+
+.pdf-pages-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.pdf-page-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pdf-page-badge {
+  align-self: flex-end;
+  background: #0f172a;
+  color: #cbd5e1;
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+/* Loading & Error States */
+.loading-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 36px;
+  color: #cbd5e1;
+}
+
+.spinner {
+  width: 34px;
+  height: 34px;
+  border: 3px solid rgba(99, 102, 241, 0.25);
+  border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-banner {
+  background: rgba(127, 29, 29, 0.9);
+  border: 1px solid #ef4444;
+  color: #fecaca;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+/* Drag & Drop Overlay */
+.dropzone-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropzone-card {
+  border: 2px dashed #6366f1;
+  background: #111827;
+  padding: 48px 64px;
+  border-radius: 16px;
+  text-align: center;
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+
+/* Free Catalog & Online GitHub Importer Modal */
+.btn-catalog-online {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #059669;
+  background: rgba(16, 185, 129, 0.16);
+  color: #6ee7b7;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-catalog-online:hover {
+  background: rgba(16, 185, 129, 0.28);
+  color: #ecfdf5;
+}
+
+.catalog-modal {
+  margin: auto;
+  width: 860px;
+  max-width: 95vw;
+  height: 82vh;
+  background: #111827;
+  border: 1px solid #2e3d59;
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.catalog-nav-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 10px 20px;
+  background: #0f172a;
+  border-bottom: 1px solid #1e293b;
+  overflow-x: auto;
+}
+
+.catalog-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.catalog-tab-btn:hover {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+.catalog-tab-btn.active {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: #6366f1;
+  color: #fff;
+}
+
+.catalog-tab-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.catalog-tab-content.padded {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.repo-selector-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #1e293b;
+  background: #161f30;
+}
+
+.repo-preset-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.custom-repo-form {
+  display: flex;
+  gap: 6px;
+}
+
+.custom-repo-form input {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #f8fafc;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  width: 210px;
+}
+
+.catalog-grid-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+}
+
+.github-files-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.github-file-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #192234;
+  border: 1px solid #26334d;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.github-file-row:hover {
+  border-color: #4f46e5;
+}
+
+.github-file-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.github-file-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.github-file-meta {
+  font-size: 0.73rem;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.builtin-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.builtin-song-card {
+  background: #192234;
+  border: 1px solid #26334d;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.builtin-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.genre-badge {
+  background: rgba(16, 185, 129, 0.18);
+  color: #6ee7b7;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.builtin-song-card h3 {
+  font-size: 0.95rem;
+  color: #f8fafc;
+}
+
+.builtin-artist {
+  font-size: 0.76rem;
+  color: #818cf8;
+  font-weight: 600;
+}
+
+.builtin-desc {
+  font-size: 0.77rem;
+  color: #94a3b8;
+  flex: 1;
+}
+
+.builtin-tracks-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 4px 0;
+}
+
+.full-w {
+  width: 100%;
+  justify-content: center;
+}
+
+.url-import-box,
+.alphatex-editor-box {
+  background: #192234;
+  border: 1px solid #26334d;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.url-import-box p,
+.alphatex-editor-box p {
+  font-size: 0.82rem;
+  color: #94a3b8;
+}
+
+.url-input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.url-input-row input,
+.alphatex-title-input {
+  flex: 1;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: #f8fafc;
+  font-size: 0.85rem;
+}
+
+.alphatex-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.alphatex-textarea {
+  width: 100%;
+  background: #0b0f19;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 12px;
+  color: #a5b4fc;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  resize: vertical;
+}
+
+
+/* Live As-You-Type Online Search Bar */
+.live-search-container {
+  position: relative;
+  flex: 1.4;
+  max-width: 540px;
+  min-width: 240px;
+}
+
+.live-search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 0 12px;
+  transition: all 0.15s ease;
+}
+
+.live-search-input-wrap.focused {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.live-search-icon {
+  color: #818cf8;
+  flex-shrink: 0;
+}
+
+.live-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #f8fafc;
+  font-size: 0.83rem;
+  padding: 8px 0;
+  outline: none;
+}
+
+.live-search-input::placeholder {
+  color: #64748b;
+}
+
+.live-search-clear {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.live-search-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 640px;
+  max-width: 92vw;
+  max-height: 72vh;
+  background: #111827;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
+  z-index: 800;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.live-search-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 9px 14px;
+  background: #0f172a;
+  border-bottom: 1px solid #1e293b;
+  font-size: 0.73rem;
+  color: #94a3b8;
+}
+
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.quick-search-tags {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.quick-tag-btn {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #cbd5e1;
+  font-size: 0.7rem;
+  padding: 2px 7px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.quick-tag-btn:hover {
+  border-color: #6366f1;
+  color: #fff;
+}
+
+.live-search-results-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.live-search-empty {
+  padding: 28px 20px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.82rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.live-result-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #192234;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.live-result-item:hover {
+  background: #233048;
+  border-color: #4f46e5;
+}
+
+.live-result-item.busy {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.live-result-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.live-result-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #f8fafc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.live-result-sub {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  margin-top: 1px;
+}
+
+.live-result-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ext-badge {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.ext-badge.builtin {
+  background: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+}
+
+.btn-xs.play-online {
+  background: #4f46e5;
+  border-color: #6366f1;
+  color: #fff;
+}
+
+
+/* Guitar Amp & Pedalboard Effects Rack (Overdrive, Distortion, Fuzz, 4x12 Cab, Chorus, Delay, Reverb) */
+.btn-tool.fx-running {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.18);
+  color: #fde68a;
+}
+
+.fx-rack-bar {
+  background: linear-gradient(180deg, #131c2e 0%, #0f1625 100%);
+  border-bottom: 1px solid #26334d;
+  padding: 10px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fx-rack-bar.fx-bypassed .fx-pedals-grid {
+  opacity: 0.6;
+}
+
+.fx-presets-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.fx-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-fx-power {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #94a3b8;
+  transition: all 0.15s ease;
+}
+
+.btn-fx-power.on {
+  background: #d97706;
+  border-color: #f59e0b;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+}
+
+.fx-rack-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.fx-preset-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.fx-preset-btn {
+  padding: 4px 10px;
+  border-radius: 14px;
+  border: 1px solid #2e3d59;
+  background: #192234;
+  color: #cbd5e1;
+  font-size: 0.73rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.14s ease;
+}
+
+.fx-preset-btn:hover {
+  border-color: #6366f1;
+  color: #fff;
+}
+
+.fx-preset-btn.active {
+  background: #4f46e5;
+  border-color: #818cf8;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.35);
+}
+
+.fx-pedals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.fx-pedal-card {
+  background: #172033;
+  border: 1px solid #2a3956;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fx-pedal-card.drive {
+  border-left: 3px solid #f59e0b;
+}
+
+.fx-pedal-card.amp-eq {
+  border-left: 3px solid #6366f1;
+}
+
+.fx-pedal-card.ambience {
+  border-left: 3px solid #06b6d4;
+}
+
+.pedal-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  color: #f8fafc;
+}
+
+.pedal-mode-select {
+  margin-left: auto;
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #fde68a;
+  font-size: 0.73rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pedal-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pedal-knob-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.73rem;
+  color: #94a3b8;
+}
+
+.pedal-knob-row span {
+  min-width: 108px;
+}
+
+.pedal-knob-row input[type='range'] {
+  flex: 1;
+  accent-color: #f59e0b;
+  cursor: pointer;
+}
+
+.fx-pedal-card.amp-eq .pedal-knob-row input[type='range'] {
+  accent-color: #6366f1;
+}
+
+.fx-pedal-card.ambience .pedal-knob-row input[type='range'] {
+  accent-color: #06b6d4;
+}
+
+.pedal-knob-row strong {
+  min-width: 48px;
+  text-align: right;
+  color: #f1f5f9;
+  font-size: 0.72rem;
+}
+
+.btn-cab-toggle {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #94a3b8;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-cab-toggle.active {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: #10b981;
+  color: #6ee7b7;
+}
+
+/* Per-Track Guitar/Bass Tone Selector in Mixer Sidebar */
+.track-tone-row {
+  margin-top: 2px;
+}
+
+.track-tone-select {
+  width: 100%;
+  background: #0f172a;
+  border: 1px solid #2e3d59;
+  border-radius: 6px;
+  color: #e2e8f0;
+  font-size: 0.74rem;
+  font-weight: 500;
+  padding: 5px 8px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.track-tone-select:hover,
+.track-tone-select:focus {
+  border-color: #6366f1;
+}
