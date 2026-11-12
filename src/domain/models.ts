@@ -2,6 +2,27 @@
 
 export type StudyStatus = 'studying' | 'todo' | 'mastered';
 
+export type SongSectionCategory =
+  | 'all'
+  | 'intro'
+  | 'verse'
+  | 'chorus'
+  | 'bridge'
+  | 'solo'
+  | 'riff'
+  | 'outro'
+  | 'other';
+
+export interface SongSection {
+  id: string;
+  name: string;
+  marker?: string;
+  category: Exclude<SongSectionCategory, 'all'>;
+  startBar: number; // 1-indexed inclusive
+  endBar: number; // 1-indexed inclusive
+  isCustom?: boolean;
+}
+
 export type DriveMode = 'clean' | 'overdrive' | 'distortion' | 'fuzz';
 
 export type CabinetModel =
@@ -44,6 +65,8 @@ export interface SavedSongSettings {
   isLooping?: boolean;
   darkScore?: boolean;
   fxConfig?: GuitarFxConfig;
+  customSections?: SongSection[];
+  masteredSectionIds?: string[];
 }
 
 export interface LibraryItem {

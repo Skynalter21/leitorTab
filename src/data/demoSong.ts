@@ -21,13 +21,13 @@ export const DEMO_ALPHATEX = `
 
 \\track "Guitarra Solo" "Gtr. Solo"
 \\staff{score tab} \\tuning E4 B3 G3 D3 A2 E2 \\instrument 30
-:8 12.1 15.1 12.1 15.2 12.2 14.3 12.3 14.4 |
+\\section "Intro" "Introdução" :8 12.1 15.1 12.1 15.2 12.2 14.3 12.3 14.4 |
 :4 12.3{v} 14.3{b(0 4 4 0)} :2 12.3{v} |
-:8 15.2 12.2 15.1 12.1 17.1 15.1 19.1 17.1 |
+\\section "Verso" "Verso / Riff Principal" :8 15.2 12.2 15.1 12.1 17.1 15.1 19.1 17.1 |
 :1 19.1{v} |
-:8 12.1 15.1 14.1 12.1 15.2 12.2 14.3 12.3 |
+\\section "Ponte" "Ponte (Bridge)" :8 12.1 15.1 14.1 12.1 15.2 12.2 14.3 12.3 |
 :4 14.4 12.3 :2 14.3{v} |
-:8 12.2 15.2 12.1 15.1 17.1 19.1 17.1 15.1 |
+\\section "Solo" "Solo Final" :8 12.2 15.2 12.1 15.1 17.1 19.1 17.1 15.1 |
 :1 12.1{v} |
 
 \\track "Guitarra Base" "Gtr. Base"
@@ -82,13 +82,13 @@ export const BUILTIN_CATALOG: BuiltInCatalogSong[] = [
 
 \\track "Guitarra Blues Lead" "Blues Lead"
 \\staff{score tab} \\tuning E4 B3 G3 D3 A2 E2 \\instrument 27
-:4 5.1 :8 8.2 5.2 7.3{b(0 4 4 0)} 5.3 7.4 5.3 |
+\\section "Intro" "Introdução Blues (I)" :4 5.1 :8 8.2 5.2 7.3{b(0 4 4 0)} 5.3 7.4 5.3 |
 :2 7.4{v} :4 5.3 7.4 |
-:8 5.2 8.2 5.1 8.1 5.1 8.2 7.3 5.3 |
+\\section "Verso" "Tema Principal" :8 5.2 8.2 5.1 8.1 5.1 8.2 7.3 5.3 |
 :1 5.3{v} |
-:4 7.3{b(0 4)} 5.2 8.2{b(0 4)} 5.1 |
+\\section "Ponte" "Ponte Subdominante (IV)" :4 7.3{b(0 4)} 5.2 8.2{b(0 4)} 5.1 |
 :2 8.2{v} :8 5.2 7.3 5.3 7.4 |
-:8 9.3 7.3 5.3 7.4 7.3 5.3 7.4 5.4 |
+\\section "Solo" "Solo Turnaround (V-IV-I)" :8 9.3 7.3 5.3 7.4 7.3 5.3 7.4 5.4 |
 :1 7.4{v} |
 
 \\track "Guitarra Shuffle" "Gtr. Shuffle"
@@ -131,9 +131,9 @@ export const BUILTIN_CATALOG: BuiltInCatalogSong[] = [
 
 \\track "Guitarra Lead 1" "Lead 1"
 \\staff{score tab} \\tuning E4 B3 G3 D3 A2 E2 \\instrument 30
-:8 10.1 13.1 12.1 10.1 13.2 10.2 12.3 10.3 |
+\\section "Intro" "Introdução Harmônica" :8 10.1 13.1 12.1 10.1 13.2 10.2 12.3 10.3 |
 :4 12.4 10.3 :2 14.3{v} |
-:8 13.1 17.1 15.1 13.1 15.2 13.2 14.3 12.3 |
+\\section "Solo" "Solo Dueto em Terças" :8 13.1 17.1 15.1 13.1 15.2 13.2 14.3 12.3 |
 :1 15.2{v} |
 
 \\track "Guitarra Harmonia 2" "Harmonia 2"
@@ -175,13 +175,13 @@ export const BUILTIN_CATALOG: BuiltInCatalogSong[] = [
 
 \\track "Guitarra Solo" "Gtr. Solo"
 \\staff{score tab} \\tuning E4 B3 G3 D3 A2 E2 \\instrument 30
-:2 14.1{v} 12.1{v} |
+\\section "Intro" "Introdução (Tema)" :2 14.1{v} 12.1{v} |
 :2 10.1{v} 9.1{v} |
-:2 7.1{v} 5.1{v} |
+\\section "Ponte" "Ponte Harmônica" :2 7.1{v} 5.1{v} |
 :2 7.1{v} 9.1{v} |
-:4 10.1 9.1 10.1 5.1 |
+\\section "Verso" "Variação em Semínimas" :4 10.1 9.1 10.1 5.1 |
 :4 7.1 5.2 7.2 9.3 |
-:8 7.2 10.2 9.2 7.2 7.3 6.3 7.3 9.3 |
+\\section "Solo" "Solo em Colcheias" :8 7.2 10.2 9.2 7.2 7.3 6.3 7.3 9.3 |
 :1 10.2{v} |
 
 \\track "Guitarra Base" "Gtr. Base"

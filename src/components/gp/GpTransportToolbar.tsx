@@ -20,6 +20,7 @@ import {
   Guitar,
   ArrowUpDown,
   Zap,
+  Bookmark,
 } from 'lucide-react';
 
 function formatTime(ms: number): string {
@@ -64,6 +65,9 @@ interface GpTransportToolbarProps {
   showFxRack: boolean;
   fxEnabled: boolean;
   onToggleShowFxRack: () => void;
+  showSectionsBar: boolean;
+  sectionCount: number;
+  onToggleShowSectionsBar: () => void;
   showFretboard: boolean;
   onToggleFretboard: () => void;
   darkScore: boolean;
@@ -114,6 +118,9 @@ export const GpTransportToolbar: React.FC<GpTransportToolbarProps> = ({
   showFxRack,
   fxEnabled,
   onToggleShowFxRack,
+  showSectionsBar,
+  sectionCount,
+  onToggleShowSectionsBar,
   showFretboard,
   onToggleFretboard,
   darkScore,
@@ -319,8 +326,18 @@ export const GpTransportToolbar: React.FC<GpTransportToolbarProps> = ({
         </div>
       </div>
 
-      {/* Group 3: FX Pedalboard, Fretboard, Dark Mode, Metronome, Volume & Zoom */}
+      {/* Group 3: Sections Bar, FX Pedalboard, Fretboard, Dark Mode, Metronome, Volume & Zoom */}
       <div className="toolbar-section">
+        <button
+          type="button"
+          className={`btn-tool ${showSectionsBar ? 'active' : ''}`}
+          onClick={onToggleShowSectionsBar}
+          title="Mostrar/Ocultar Abas de Partes da Música (Introdução, Verso, Ponte, Solo, Refrão)"
+        >
+          <Bookmark size={15} />
+          <span>Partes ({sectionCount})</span>
+        </button>
+
         <button
           type="button"
           className={`btn-tool ${

@@ -9,8 +9,13 @@ import { FretboardVisualizer, type ActiveFretNote } from './FretboardVisualizer'
 import { GpTransportToolbar } from './gp/GpTransportToolbar';
 import { SpeedTrainerBar } from './gp/SpeedTrainerBar';
 import { GuitarEffectsRackBar } from './gp/GuitarEffectsRackBar';
+import { SongSectionsTabBar } from './gp/SongSectionsTabBar';
 import { TrackMixerSidebar } from './gp/TrackMixerSidebar';
 import { applyScoreTheme } from '../services/alphatab/AlphaTabThemeService';
+import {
+  extractSectionsFromScore,
+  generateSmartSections,
+} from '../services/alphatab/SongSectionService';
 import {
   WebAudioGuitarEffectsRack,
   DEFAULT_GUITAR_FX_CONFIG,
@@ -21,6 +26,7 @@ import type {
   GuitarFxConfig,
   GuitarProSource,
   SavedSongSettings,
+  SongSection,
   TrackMixState,
 } from '../domain/models';
 
@@ -121,6 +127,18 @@ export const GuitarProPlayer: React.FC<GuitarProPlayerProps> = ({
   const [fxConfig, setFxConfig] = useState<GuitarFxConfig>(
     initialSettings?.fxConfig ?? DEFAULT_GUITAR_FX_CONFIG
   );
+
+  // Song Sections (Part-by-Part Study) state
+  const [showSectionsBar, setShowSectionsBar] = useState<boolean>(true);
+  const [sections, setSections] = useState<SongSection[]>([]);
+  const [customSections, setCustomSections] = useState<SongSection[]>(
+    initialSettings?.customSections ?? []
+  );
+  const [masteredSectionIds, setMasteredSectionIds] = useState<string[]>(
+    initialSettings?.masteredSectionIds ?? []
+  );
+  const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
+  const [isolateScoreView, setIsolateScoreView] = useState<boolean>(true);
 
   // Speed Trainer state
   const [showSpeedTrainer, setShowSpeedTrainer] = useState<boolean>(false);
@@ -238,6 +256,8 @@ export const GuitarProPlayer: React.FC<GuitarProPlayerProps> = ({
         isLooping,
         darkScore,
         fxConfig,
+        customSections,
+        masteredSectionIds,
         ...patch,
       });
     },
@@ -249,6 +269,8 @@ export const GuitarProPlayer: React.FC<GuitarProPlayerProps> = ({
       isLooping,
       darkScore,
       fxConfig,
+      customSections,
+      masteredSectionIds,
     ]
   );
 
@@ -310,6 +332,21 @@ export const GuitarProPlayer: React.FC<GuitarProPlayerProps> = ({
       });
 
       const saved = initialSettingsRef.current;
+      const savedCustomSecs = saved?.customSections || [];
+      const savedMasteredIds = saved?.masteredSectionIds || [];
+      setCustomSections(savedCustomSecs);
+      setMasteredSectionIds(savedMasteredIds);
+      setActiveSectionId(null);
+
+      if (api.settings.display.startBar !== 1 || api.settings.display.barCount !== -1) {
+        api.settings.display.startBar = 1;
+        api.settings.display.barCount = -1;
+        api.updateSettings();
+      }
+
+      const extractedSecs = extractSectionsFromScore(score, savedCustomSecs);
+      setSections(extractedSecs);
+
       const mutedSet = new Set(saved?.mutedTracks || []);
       const soloSet = new Set(saved?.soloTracks || []);
       const volMap = saved?.trackVolumes || {};
@@ -781,11 +818,152 @@ export const GuitarProPlayer: React.FC<GuitarProPlayerProps> = ({
   }, [loopStartBar, loopEndBar, totalBars, persistCurrentSettings]);
 
   const clearLoopRange = useCallback(() => {
-    if (apiRef.current) {
-      apiRef.current.playbackRange = null;
+    const api = apiRef.current;
+    if (api) {
+      api.playbackRange = null;
       setHasActiveRange(false);
+      setActiveSectionId(null);
+      if (api.settings.display.startBar !== 1 || api.settings.display.barCount !== -1) {
+        api.settings.display.startBar = 1;
+        api.settings.display.barCount = -1;
+        api.updateSettings();
+        api.render();
+      }
     }
   }, []);
+
+  // Song Section Part-by-Part Handlers
+  const handleSelectSection = useCallback(
+    (section: SongSection | null) => {
+      const api = apiRef.current;
+      if (!api) return;
+
+      if (!section) {
+        setActiveSectionId(null);
+        api.playbackRange = null;
+        setHasActiveRange(false);
+        if (api.settings.display.startBar !== 1 || api.settings.display.barCount !== -1) {
+          api.settings.display.startBar = 1;
+          api.settings.display.barCount = -1;
+          api.updateSettings();
+          api.render();
+        }
+        return;
+      }
+
+      setActiveSectionId(section.id);
+      setLoopStartBar(section.startBar);
+      setLoopEndBar(section.endBar);
+
+      const targetStartBar = isolateScoreView ? section.startBar : 1;
+      const targetBarCount = isolateScoreView
+        ? Math.max(1, section.endBar - section.startBar + 1)
+        : -1;
+
+      if (
+        api.settings.display.startBar !== targetStartBar ||
+        api.settings.display.barCount !== targetBarCount
+      ) {
+        api.settings.display.startBar = targetStartBar;
+        api.settings.display.barCount = targetBarCount;
+        api.updateSettings();
+        api.render();
+      }
+
+      if (api.tickCache && totalBars > 0) {
+        const sIdx = Math.max(0, Math.min(section.startBar - 1, totalBars - 1));
+        const eIdx = Math.max(sIdx, Math.min(section.endBar - 1, totalBars - 1));
+        const startLookup = api.tickCache.masterBars[sIdx];
+        const endLookup = api.tickCache.masterBars[eIdx];
+
+        if (startLookup && endLookup) {
+          api.playbackRange = {
+            startTick: startLookup.start,
+            endTick: endLookup.end,
+          };
+          api.tickPosition = startLookup.start;
+          api.isLooping = true;
+          setIsLooping(true);
+          setHasActiveRange(true);
+        }
+      }
+    },
+    [isolateScoreView, totalBars]
+  );
+
+  const handleToggleIsolateScoreView = useCallback(() => {
+    const api = apiRef.current;
+    const nextIsolate = !isolateScoreView;
+    setIsolateScoreView(nextIsolate);
+
+    if (!api) return;
+    const activeSec = sections.find((s) => s.id === activeSectionId);
+    if (!activeSec) return;
+
+    api.settings.display.startBar = nextIsolate ? activeSec.startBar : 1;
+    api.settings.display.barCount = nextIsolate
+      ? Math.max(1, activeSec.endBar - activeSec.startBar + 1)
+      : -1;
+    api.updateSettings();
+    api.render();
+  }, [isolateScoreView, sections, activeSectionId]);
+
+  const handleToggleMasteredSection = useCallback(
+    (sectionId: string) => {
+      setMasteredSectionIds((prev) => {
+        const exists = prev.includes(sectionId);
+        const next = exists
+          ? prev.filter((id) => id !== sectionId)
+          : [...prev, sectionId];
+        persistCurrentSettings({ masteredSectionIds: next });
+        return next;
+      });
+    },
+    [persistCurrentSettings]
+  );
+
+  const handleAddCustomSection = useCallback(
+    (newSection: SongSection) => {
+      const api = apiRef.current;
+      setCustomSections((prev) => {
+        const nextCustom = [...prev, newSection];
+        if (api?.score) {
+          setSections(extractSectionsFromScore(api.score, nextCustom));
+        }
+        persistCurrentSettings({ customSections: nextCustom });
+        return nextCustom;
+      });
+    },
+    [persistCurrentSettings]
+  );
+
+  const handleDeleteCustomSection = useCallback(
+    (sectionId: string) => {
+      const api = apiRef.current;
+      setCustomSections((prev) => {
+        const nextCustom = prev.filter((s) => s.id !== sectionId);
+        if (api?.score) {
+          setSections(extractSectionsFromScore(api.score, nextCustom));
+        }
+        persistCurrentSettings({ customSections: nextCustom });
+        return nextCustom;
+      });
+      if (activeSectionId === sectionId) {
+        handleSelectSection(null);
+      }
+    },
+    [activeSectionId, handleSelectSection, persistCurrentSettings]
+  );
+
+  const handleAutoSplitSections = useCallback(() => {
+    const api = apiRef.current;
+    if (!api?.score) return;
+    const generated = generateSmartSections(api.score);
+    setCustomSections(generated);
+    const merged = extractSectionsFromScore(api.score, generated);
+    setSections(merged);
+    persistCurrentSettings({ customSections: generated });
+  }, [persistCurrentSettings]);
 
   const handleToggleSpeedTrainer = useCallback(() => {
     const nextActive = !speedTrainerActive;
@@ -932,6 +1110,9 @@ export const GuitarProPlayer: React.FC<GuitarProPlayerProps> = ({
         showFxRack={showFxRack}
         fxEnabled={fxConfig.enabled}
         onToggleShowFxRack={() => setShowFxRack((v) => !v)}
+        showSectionsBar={showSectionsBar}
+        sectionCount={sections.length}
+        onToggleShowSectionsBar={() => setShowSectionsBar((v) => !v)}
         showFretboard={showFretboard}
         onToggleFretboard={() => setShowFretboard((v) => !v)}
         darkScore={darkScore}
@@ -947,6 +1128,24 @@ export const GuitarProPlayer: React.FC<GuitarProPlayerProps> = ({
         layoutMode={layoutMode}
         onToggleLayout={handleToggleLayout}
       />
+
+      {showSectionsBar && (
+        <SongSectionsTabBar
+          sections={sections}
+          totalBars={totalBars}
+          activeSectionId={activeSectionId}
+          isolateScoreView={isolateScoreView}
+          masteredSectionIds={masteredSectionIds}
+          defaultNewStartBar={loopStartBar}
+          defaultNewEndBar={loopEndBar}
+          onSelectSection={handleSelectSection}
+          onToggleIsolateScoreView={handleToggleIsolateScoreView}
+          onToggleMasteredSection={handleToggleMasteredSection}
+          onAddCustomSection={handleAddCustomSection}
+          onDeleteCustomSection={handleDeleteCustomSection}
+          onAutoSplitSections={handleAutoSplitSections}
+        />
+      )}
 
       {showFxRack && (
         <GuitarEffectsRackBar
